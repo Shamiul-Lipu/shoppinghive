@@ -54,7 +54,7 @@ const NavBar = () => {
   const userFunctionalityList = (
     <ul
       tabIndex={0}
-      className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-amber-100 rounded-box w-52 "
+      className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-amber-100 rounded-box w-52 z-10"
     >
       <li>
         <Link className="justify-between">
@@ -63,9 +63,15 @@ const NavBar = () => {
         </Link>
       </li>
       <li>
-        <button className="bg-blue-950 px-4 py-2 rounded-lg text-amber-300 font-bold hover:bg-amber-500 hover:text-blue-950 transition-colors">
-          Logout
-        </button>
+        {user ? (
+          <button className="bg-blue-950 px-4 py-2 rounded-lg text-amber-300 font-bold hover:bg-amber-500 hover:text-blue-950 transition-colors">
+            Logout
+          </button>
+        ) : (
+          <button className="bg-amber-300 px-4 py-2 rounded-lg text-blue-950 font-bold hover:bg-amber-200 hover:text-blue-950 transition-colors ">
+            Sign Up
+          </button>
+        )}
       </li>
     </ul>
   );
@@ -98,8 +104,8 @@ const NavBar = () => {
             </div>
           </nav>
           <div
-            className={`pt-3 bg-amber-100 rounded-lg -translate-y-full sm:hidden ${
-              isMenu ? "block translate-y-0 transition-all" : "hidden"
+            className={`pt-3 bg-amber-100 rounded-lg sm:hidden ${
+              isMenu ? "block" : "hidden"
             }`}
           >
             {navItem}

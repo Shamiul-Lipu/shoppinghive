@@ -10,9 +10,11 @@ const ProductsSection = () => {
       .then((res) => res.json())
       .then((res) => setData(res));
   }, []);
-  console.log(data);
+  const filteredData =
+    data && data.filter((product) => product.category === `Men's Sneaker`);
+  console.log(filteredData);
   return (
-    <section className="bg-blue-50">
+    <section className="bg-blue-50 py-10">
       <Container>
         <SectionTitle
           titleText={"Our Exquisite Product Lineup"}
