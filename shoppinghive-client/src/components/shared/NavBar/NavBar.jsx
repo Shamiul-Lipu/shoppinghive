@@ -1,13 +1,16 @@
 import mainLogo from "../../../assets/bag.png";
 import Container from "../../container/Container";
 import { Link, NavLink } from "react-router-dom";
+import Marquee from "react-fast-marquee";
 
-import { FaUser, FaUserCheck } from "react-icons/fa6";
+import { FaUser, FaUserCheck, FaBarsStaggered, FaXmark } from "react-icons/fa6";
+import { useState } from "react";
 
 const NavBar = () => {
+  const [isMenu, setIsMenu] = useState(false);
   const user = null;
   const navItem = (
-    <ul className="flex flex-row gap-1 font-medium justify-center items-center">
+    <ul className="flex flex-col sm:flex-row gap-1 font-medium justify-center items-center">
       <li>
         <NavLink
           to="/"
@@ -60,28 +63,47 @@ const NavBar = () => {
         </Link>
       </li>
       <li>
-        <button>Logout</button>
+        <button className="bg-blue-950 px-4 py-2 rounded-lg text-amber-300 font-bold hover:bg-amber-500 hover:text-blue-950 transition-colors">
+          Logout
+        </button>
       </li>
     </ul>
   );
 
   return (
     <>
-      <section className="bg-amber-200 py-2">
+      <section className="bg-amber-200 py-2 px-2">
         <Container>
-          <nav className="flex flex-col md:flex-row justify-between items-center">
+          <nav className="flex justify-between items-center">
             {/* logo and brand name */}
-            <div className="flex flex-row items-center gap-3">
+            <Link to={"/"} className="flex flex-row items-center gap-3 py-2">
               <img
-                className="w-10"
+                className="w-8 sm:w-10"
                 src={mainLogo}
                 alt="main logo of the shoppinghive"
               />
-              <h3 className="font-bold text-2xl">Shoppinghive</h3>
-            </div>
+              <h3 className="font-extrabold text-2xl sm:text-3xl bg-gradient-to-r from-blue-950  to-amber-700 inline-block text-transparent bg-clip-text">
+                Shoppinghive
+              </h3>
+            </Link>
             {/* nav items for medium and large screen */}
-            <div>{navItem}</div>
+            <div className="py-2">
+              <button
+                onClick={() => setIsMenu(!isMenu)}
+                className="p-2 bg-amber-50 rounded-md transition-all block sm:hidden"
+              >
+                {isMenu ? <FaXmark /> : <FaBarsStaggered />}
+              </button>
+              <div className="hidden sm:block">{navItem}</div>
+            </div>
           </nav>
+          <div
+            className={`pt-3 bg-amber-100 rounded-lg -translate-y-full sm:hidden ${
+              isMenu ? "block translate-y-0 transition-all" : "hidden"
+            }`}
+          >
+            {navItem}
+          </div>
         </Container>
       </section>
 
@@ -89,12 +111,36 @@ const NavBar = () => {
         <Container>
           <div className="flex flex-col sm:flex-row gap-1 sm:gap-5 justify-center items-center">
             {/* search functionality */}
-            <div className="order-2 sm:order-1">
+            {/* <div className="order-2 sm:order-1">
               <input
                 type="text"
                 placeholder="Search here"
                 className="input input-bordered input-warning w-full max-w-xs"
               />
+            </div> */}
+            <div className="order-2">
+              <Marquee
+                className="bg-red-100"
+                speed={100}
+                gradientColor={[248, 251, 253]}
+                gradient={true}
+                gradientWidth={160}
+              >
+                <p className="font-medium">
+                  <span className="text-orange-950">***</span>
+                  Receive a welcoming{" "}
+                  <span className="text-orange-600 font-bold">
+                    {" "}
+                    20%! discount
+                  </span>{" "}
+                  upon new registration & Enjoy savings of up to{" "}
+                  <span className="text-orange-600 font-bold">
+                    {" "}
+                    50%! discount
+                  </span>
+                  <span className="text-orange-950">***</span>
+                </p>
+              </Marquee>
             </div>
             {/* user dashboard and profile */}
             <div className="flex order-1 sm:order-2 gap-1 justify-center items-center bg-amber-100 rounded-xl p-1">
