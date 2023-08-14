@@ -1,5 +1,7 @@
+import ProductsSection from "./ProductsSection/ProductsSection";
+
 const Products = () => {
-  return <div>products with filter</div>;
+  return <ProductsSection></ProductsSection>;
 };
 
 export default Products;

@@ -10,8 +10,16 @@ const ProductCard = ({
   stock,
 }) => {
   return (
-    <div className="card w-full glass">
-      <figure>{image && <img src={image} alt="product image!" />}</figure>
+    <div className="card w-full glass border-white">
+      <figure>
+        {image && (
+          <img
+            className="hover:scale-110 hover:transition-all hover:ease-linear hover:duration-300"
+            src={image}
+            alt="product image!"
+          />
+        )}
+      </figure>
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
         {/* product details */}

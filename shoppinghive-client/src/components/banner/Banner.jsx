@@ -35,12 +35,11 @@ const Banner = () => {
               stopOnHover={false}
             >
               {allBanner.map((image, i) => (
-                <div className="rounded-xl relative" key={i}>
-                  <div>
-                    <img className="rounded-xl" src={image} />
-                  </div>
+                <div className="relative" key={i}>
+                  <div className="absolute w-full h-full bg-black opacity-30"></div>
+                  <img className="" src={image} />
                   <div className="absolute top-1/2 p-4">
-                    <p className="text-yellow-200 font-medium bg-gray-600 rounded-md px-1 pb-2">
+                    <p className="text-yellow-200 font-medium bg-gray-700 rounded-md px-1 pb-2">
                       Receive a welcoming{" "}
                       <span className=" text-amber-400 p-3  font-extrabold text-2xl rounded-md">
                         20%!
